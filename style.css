@@ -421,67 +421,203 @@ body {
 }
 
 /* ══════════════════════════════════════
-   SKILLS
+   SKILLS — TECH ORBIT SOLAR SYSTEM
 ══════════════════════════════════════ */
 #skills {
   position:relative;
-  padding:120px 0;
+  padding:120px 0 80px;
   overflow:hidden;
 }
 #skillsCanvas {
   position:absolute; inset:0;
   width:100%; height:100%;
-  opacity:.4;
-}
-.skills-grid {
-  position:relative; z-index:1;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-.skill-card {
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:32px 28px;
-  backdrop-filter:blur(12px);
-  transition:var(--transition);
-  position:relative;
-  overflow:hidden;
-}
-.skill-card::before {
-  content:'';
-  position:absolute; top:0; left:0; right:0;
-  height:2px;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:transform var(--transition);
-}
-.skill-card:hover { transform:translateY(-8px); border-color:rgba(201,168,76,.35); }
-.skill-card:hover::before { transform:scaleX(1); }
-.skill-icon {
-  width:52px; height:52px;
-  border-radius:12px;
-  background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(232,213,163,.1));
-  border:1px solid rgba(201,168,76,.2);
-  display:flex; align-items:center; justify-content:center;
-  font-size:1.5rem;
-  color:var(--accent);
-  margin-bottom:16px;
-}
-.skill-card h3 {
-  font-size:1.1rem;
-  font-weight:600;
-  color:var(--white);
-  margin-bottom:8px;
-}
-.skill-card p {
-  font-size:.85rem;
-  color:var(--text-muted);
-  line-height:1.6;
+  opacity:.25;
 }
 
+/* Orbit wrapper */
+.orbit-system {
+  position:relative;
+  width:700px; height:700px;
+  margin:0 auto;
+  user-select:none;
+}
+
+/* SVG rings */
+.orbit-rings {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  pointer-events:none;
+}
+.orbit-ring {
+  fill:none;
+  stroke:rgba(201,168,76,.18);
+  stroke-width:1;
+  stroke-dasharray:6 4;
+}
+
+/* Core */
+.orbit-core {
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:110px; height:110px;
+  border-radius:50%;
+  background:radial-gradient(circle at 40% 35%, #e8d5a3, #8b6914);
+  display:flex; align-items:center; justify-content:center;
+  z-index:10;
+  box-shadow:0 0 0 12px rgba(201,168,76,.08), 0 0 40px rgba(201,168,76,.35);
+  animation:corePulse 3s ease-in-out infinite;
+}
+@keyframes corePulse {
+  0%,100%{ box-shadow:0 0 0 12px rgba(201,168,76,.08), 0 0 40px rgba(201,168,76,.35); }
+  50%{     box-shadow:0 0 0 20px rgba(201,168,76,.04), 0 0 60px rgba(201,168,76,.5);  }
+}
+.orbit-core-glow {
+  position:absolute; inset:-20px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(201,168,76,.15) 0%, transparent 70%);
+  animation:coreGlow 3s ease-in-out infinite;
+}
+@keyframes coreGlow {
+  0%,100%{ opacity:.6; transform:scale(1); }
+  50%{     opacity:1;  transform:scale(1.15); }
+}
+.orbit-core-label {
+  font-family:var(--mono);
+  font-size:.65rem;
+  font-weight:700;
+  color:#0d0f14;
+  text-align:center;
+  line-height:1.3;
+  letter-spacing:.08em;
+  position:relative; z-index:1;
+}
+
+/* Planets */
+.orbit-planet {
+  position:absolute;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  transform:translate(-50%,-50%);
+  cursor:pointer;
+  transition:opacity .4s, filter .4s;
+  z-index:5;
+}
+.orbit-planet.dimmed {
+  opacity:.3;
+  filter:grayscale(.6);
+}
+.planet-body {
+  width:58px; height:58px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, rgba(232,213,163,.25), rgba(13,15,20,.9));
+  border:1.5px solid rgba(201,168,76,.5);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem;
+  color:var(--accent);
+  transition:transform .3s, box-shadow .3s, border-color .3s;
+  box-shadow:0 0 12px rgba(201,168,76,.2);
+}
+.orbit-planet:hover .planet-body,
+.orbit-planet.active .planet-body {
+  transform:scale(1.2);
+  border-color:var(--accent);
+  box-shadow:0 0 24px rgba(201,168,76,.55);
+}
+.planet-label {
+  font-family:var(--mono);
+  font-size:.68rem;
+  color:var(--accent2);
+  letter-spacing:.08em;
+  white-space:nowrap;
+  opacity:.8;
+  transition:opacity .3s;
+}
+.orbit-planet:hover .planet-label,
+.orbit-planet.active .planet-label { opacity:1; color:var(--accent); }
+
+/* Info sidebar */
+.orbit-sidebar {
+  position:absolute;
+  top:50%; right:-260px;
+  transform:translateY(-50%);
+  width:230px;
+  background:rgba(13,15,20,.95);
+  border:1px solid rgba(201,168,76,.3);
+  border-radius:var(--radius);
+  padding:28px 24px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 50px rgba(0,0,0,.6), 0 0 24px rgba(201,168,76,.1);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s ease, right .35s cubic-bezier(.4,0,.2,1);
+  z-index:30;
+}
+.orbit-sidebar.visible {
+  opacity:1;
+  right:-250px;
+  pointer-events:all;
+}
+.osb-icon {
+  font-size:2rem;
+  color:var(--accent);
+  margin-bottom:10px;
+}
+.osb-title {
+  font-size:1rem;
+  font-weight:700;
+  color:var(--white);
+  margin-bottom:14px;
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(201,168,76,.2);
+}
+.osb-list {
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.osb-list li {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--mono);
+  font-size:.78rem;
+  color:var(--accent2);
+  animation:tagPop .25s ease both;
+}
+.osb-list li::before {
+  content:'';
+  width:6px; height:6px;
+  border-radius:50%;
+  background:var(--accent);
+  flex-shrink:0;
+}
+
+/* Mobile: sidebar becomes bottom bar */
+@media(max-width:900px){
+  .orbit-sidebar {
+    top:auto; right:50%;
+    bottom:-180px;
+    transform:translateX(50%);
+    width:90%;
+    max-width:340px;
+  }
+  .orbit-sidebar.visible {
+    bottom:-170px;
+    right:50%;
+  }
+  .osb-list { flex-direction:row; flex-wrap:wrap; }
+}
+
+/* Mobile fallback */
+@media(max-width:768px){
+  .orbit-system { width:340px; height:340px; }
+  .orbit-core   { width:70px; height:70px; }
+  .orbit-core-label { font-size:.5rem; }
+  .planet-body  { width:40px; height:40px; font-size:1rem; }
+  .planet-label { font-size:.55rem; }
+  .orbit-info-panel { padding:24px 20px; }
+}
 
 /* ══════════════════════════════════════
    PROJECTS
@@ -721,7 +857,6 @@ footer strong { color:var(--white); }
    RESPONSIVE
 ══════════════════════════════════════ */
 @media(max-width:1024px){
-  .skills-grid { grid-template-columns:repeat(2,1fr); }
   .about-grid  { grid-template-columns:1fr; gap:50px; }
   .about-card-wrap { justify-content:center; }
 }
@@ -734,7 +869,7 @@ footer strong { color:var(--white); }
   .projects-grid { grid-template-columns:1fr; }
   .contact-grid  { grid-template-columns:1fr; }
   .form-row      { grid-template-columns:1fr; }
-  .skills-grid   { grid-template-columns:1fr; }
+  .skills-grid   { display:none; }
   .hero-cta      { flex-direction:column; align-items:center; }
   .contact-form  { padding:28px 20px; }
 }

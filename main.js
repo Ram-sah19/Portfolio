@@ -32,6 +32,7 @@ function initAll() {
   initAboutCard();
   initAboutScene();
   initSkillsScene();
+  initOrbit();
   initProjectScenes();
   initContactScene();
   initScrollReveal();
@@ -83,7 +84,7 @@ function initHamburger() {
 ───────────────────────────────────────── */
 function initTypewriter() {
   const el    = $("#typewriter");
-  const words = ["Full-Stack Developer", "3D Web Creator", "UI/UX Enthusiast", "Problem Solver"];
+  const words = ["Full-Stack Developer", "React Developer", "Node.js Engineer", "BCA Student"];
   let wi = 0, ci = 0, deleting = false;
 
   function tick() {
@@ -321,6 +322,98 @@ function initSkillsScene() {
     });
     renderer.render(scene, camera);
   })();
+}
+
+/* ═══════════════════════════════════════════════════════
+   TECH ORBIT — Solar System Skills
+═══════════════════════════════════════════════════════ */
+function initOrbit() {
+  const system = $("#orbitSystem");
+  if (!system) return;
+
+  const skillData = [
+    { icon:"fa-brands fa-react",    title:"Frontend",  tags:["React.js","Next.js","Three.js","Tailwind CSS","HTML5","CSS3","JavaScript"] },
+    { icon:"fa-brands fa-node-js",  title:"Backend",   tags:["Node.js","Express.js","REST API","PHP","Python"] },
+    { icon:"fa-solid fa-database",  title:"Database",  tags:["MongoDB","MySQL","Firebase","Mongoose"] },
+    { icon:"fa-brands fa-git-alt",  title:"Tools",     tags:["Git","GitHub","VS Code","Postman","Figma","Linux"] },
+    { icon:"fa-solid fa-cube",      title:"3D / UI",   tags:["Three.js","WebGL","GSAP","Framer Motion","Bootstrap"] },
+    { icon:"fa-brands fa-python",   title:"Languages", tags:["JavaScript","Python","PHP","C","C++","Java"] },
+  ];
+
+  const planets  = $$(".orbit-planet", system);
+  const sidebar  = $("#orbitSidebar");
+  const osbIcon  = $("#osbIcon");
+  const osbTitle = $("#osbTitle");
+  const osbList  = $("#osbList");
+
+  const orbits = [
+    { rx:130, ry:50  },
+    { rx:210, ry:80  },
+    { rx:295, ry:115 },
+  ];
+  const planetCfg = [
+    { orbit:0, angle:0   },
+    { orbit:1, angle:60  },
+    { orbit:2, angle:120 },
+    { orbit:0, angle:180 },
+    { orbit:1, angle:240 },
+    { orbit:2, angle:300 },
+  ];
+  const speeds = [0.45, 0.28, 0.18];
+  const angles = planetCfg.map(p => p.angle * Math.PI / 180);
+  const cx = system.offsetWidth  / 2;
+  const cy = system.offsetHeight / 2;
+
+  function placePlanet(el, orbitIdx, angle) {
+    const o = orbits[orbitIdx];
+    el.style.left = (cx + o.rx * Math.cos(angle)) + "px";
+    el.style.top  = (cy + o.ry * Math.sin(angle)) + "px";
+  }
+
+  planets.forEach((el, i) => placePlanet(el, planetCfg[i].orbit, angles[i]));
+
+  let hideTimer = null;
+
+  function showSidebar(i) {
+    clearTimeout(hideTimer);
+    const d = skillData[i];
+    osbIcon.innerHTML    = `<i class="${d.icon}"></i>`;
+    osbTitle.textContent = d.title;
+    osbList.innerHTML    = d.tags.map((t, ti) =>
+      `<li style="animation-delay:${ti * 0.04}s">${t}</li>`
+    ).join("");
+    sidebar.classList.add("visible");
+    planets.forEach((p, j) => {
+      p.classList.toggle("active", j === i);
+      p.classList.toggle("dimmed", j !== i);
+    });
+  }
+
+  function hideSidebar() {
+    hideTimer = setTimeout(() => {
+      sidebar.classList.remove("visible");
+      planets.forEach(p => p.classList.remove("active", "dimmed"));
+    }, 200);
+  }
+
+  planets.forEach((el, i) => {
+    el.addEventListener("mouseenter", () => showSidebar(i));
+    el.addEventListener("mouseleave", hideSidebar);
+  });
+  sidebar.addEventListener("mouseenter", () => clearTimeout(hideTimer));
+  sidebar.addEventListener("mouseleave", hideSidebar);
+
+  // Animation loop
+  let last = performance.now();
+  (function loop(now) {
+    requestAnimationFrame(loop);
+    const dt = (now - last) / 1000;
+    last = now;
+    planets.forEach((el, i) => {
+      angles[i] += speeds[planetCfg[i].orbit] * dt;
+      placePlanet(el, planetCfg[i].orbit, angles[i]);
+    });
+  })(performance.now());
 }
 
 /* ═══════════════════════════════════════════════════════
