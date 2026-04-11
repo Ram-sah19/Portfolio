@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ram | Creative Developer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- ── LOADER ── -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-bar"></div>
+      <span class="loader-text">Initialising<span class="dots">...</span></span>
+    </div>
+  </div>
+
+  <!-- ── NAV ── -->
+  <nav id="navbar">
+    <div class="nav-logo">RAM<span class="accent">.</span></div>
+    <ul class="nav-links">
+      <li><a href="#hero"    class="nav-link">Home</a></li>
+      <li><a href="#about"   class="nav-link">About</a></li>
+      <li><a href="#skills"  class="nav-link">Skills</a></li>
+      <li><a href="#projects"class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── MOBILE MENU ── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#hero"     class="mob-link">Home</a></li>
+      <li><a href="#about"    class="mob-link">About</a></li>
+      <li><a href="#skills"   class="mob-link">Skills</a></li>
+      <li><a href="#projects" class="mob-link">Projects</a></li>
+      <li><a href="#contact"  class="mob-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SECTION 1 — HERO
+  ══════════════════════════════════════ -->
+  <section id="hero">
+    <canvas id="heroCanvas"></canvas>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Hello, World 👋</p>
+      <h1 class="hero-title">
+        I'm <span class="gradient-text">Ram</span><br/>
+        <span class="typewriter" id="typewriter"></span>
+      </h1>
+      <p class="hero-sub">
+        Crafting immersive digital experiences with code, creativity &amp; a touch of magic.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact"  class="btn btn-outline">Let's Talk</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 2 — ABOUT
+  ══════════════════════════════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">01 / About</span>
+        <h2 class="section-title">Who Am I?</h2>
+      </div>
+
+      <div class="about-grid">
+        <!-- 3-D card -->
+        <div class="about-card-wrap">
+          <div class="about-card" id="aboutCard">
+            <canvas id="aboutCanvas"></canvas>
+            <div class="about-card-overlay">
+              <div class="about-avatar-ring">
+                <div class="about-avatar">R</div>
+              </div>
+              <p class="about-card-name">Ram</p>
+              <p class="about-card-role">Full-Stack Developer</p>
+              <div class="about-card-stats">
+                <div class="stat"><span class="stat-num" data-target="3">0</span><span>+</span><p>Years Exp</p></div>
+                <div class="stat"><span class="stat-num" data-target="40">0</span><span>+</span><p>Projects</p></div>
+                <div class="stat"><span class="stat-num" data-target="20">0</span><span>+</span><p>Clients</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="about-text">
+          <p class="about-para">
+            I'm a passionate <strong>Full-Stack Developer &amp; 3D Web Enthusiast</strong> who loves turning complex ideas into elegant, performant digital products.
+          </p>
+          <p class="about-para">
+            From pixel-perfect UIs to robust back-end systems, I bridge the gap between design and engineering — always with an eye for detail and a drive for innovation.
+          </p>
+          <div class="about-tags">
+            <span class="tag">React</span><span class="tag">Node.js</span>
+            <span class="tag">Three.js</span><span class="tag">Python</span>
+            <span class="tag">MongoDB</span><span class="tag">AWS</span>
+          </div>
+          <a href="#" class="btn btn-primary" download>
+            <i class="fa fa-download"></i>&nbsp; Download CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 3 — SKILLS
+  ══════════════════════════════════════ -->
+  <section id="skills">
+    <canvas id="skillsCanvas"></canvas>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">02 / Skills</span>
+        <h2 class="section-title">What I Do</h2>
+      </div>
+
+      <div class="skills-grid">
+
+        <div class="skill-card" data-tilt>
+          <div class="skill-icon"><i class="fa-brands fa-react"></i></div>
+          <h3>Frontend</h3>
+          <p>React, Next.js, Three.js, GSAP, Tailwind CSS</p>
+
+        </div>
+
+        <div class="skill-card" data-tilt>
+          <div class="skill-icon"><i class="fa-brands fa-node-js"></i></div>
+          <h3>Backend</h3>
+          <p>Node.js, Express, Python, Django, REST &amp; GraphQL</p>
+
+        </div>
+
+        <div class="skill-card" data-tilt>
+          <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+          <h3>Database</h3>
+          <p>MongoDB, PostgreSQL, Redis, Firebase</p>
+
+        </div>
+
+        <div class="skill-card" data-tilt>
+          <div class="skill-icon"><i class="fa-brands fa-aws"></i></div>
+          <h3>DevOps / Cloud</h3>
+          <p>AWS, Docker, CI/CD, Nginx, Linux</p>
+
+        </div>
+
+        <div class="skill-card" data-tilt>
+          <div class="skill-icon"><i class="fa-solid fa-cube"></i></div>
+          <h3>3D / Creative</h3>
+          <p>Three.js, WebGL, Blender, GLSL Shaders</p>
+
+        </div>
+
+        <div class="skill-card" data-tilt>
+          <div class="skill-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+          <h3>Mobile</h3>
+          <p>React Native, Flutter, PWA</p>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 4 — PROJECTS
+  ══════════════════════════════════════ -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">03 / Projects</span>
+        <h2 class="section-title">Featured Work</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card" data-index="0">
+          <div class="project-canvas-wrap">
+            <canvas class="project-canvas" id="pCanvas0"></canvas>
+          </div>
+          <div class="project-info">
+            <span class="project-tag">Full-Stack</span>
+            <h3>E-Commerce Platform</h3>
+            <p>A blazing-fast online store with real-time inventory, Stripe payments &amp; an AI recommendation engine.</p>
+            <div class="project-tech">
+              <span>React</span><span>Node</span><span>MongoDB</span><span>Stripe</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="proj-btn"><i class="fa fa-eye"></i> Live</a>
+              <a href="#" class="proj-btn outline"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-index="1">
+          <div class="project-canvas-wrap">
+            <canvas class="project-canvas" id="pCanvas1"></canvas>
+          </div>
+          <div class="project-info">
+            <span class="project-tag">3D / WebGL</span>
+            <h3>3D Product Configurator</h3>
+            <p>Interactive 3D product viewer with real-time material swapping, AR preview &amp; shareable links.</p>
+            <div class="project-tech">
+              <span>Three.js</span><span>GLSL</span><span>React</span><span>WebXR</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="proj-btn"><i class="fa fa-eye"></i> Live</a>
+              <a href="#" class="proj-btn outline"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-index="2">
+          <div class="project-canvas-wrap">
+            <canvas class="project-canvas" id="pCanvas2"></canvas>
+          </div>
+          <div class="project-info">
+            <span class="project-tag">AI / ML</span>
+            <h3>AI Chat Assistant</h3>
+            <p>GPT-powered chat app with voice input, multi-language support &amp; context-aware memory.</p>
+            <div class="project-tech">
+              <span>Python</span><span>FastAPI</span><span>OpenAI</span><span>React</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="proj-btn"><i class="fa fa-eye"></i> Live</a>
+              <a href="#" class="proj-btn outline"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-index="3">
+          <div class="project-canvas-wrap">
+            <canvas class="project-canvas" id="pCanvas3"></canvas>
+          </div>
+          <div class="project-info">
+            <span class="project-tag">Mobile</span>
+            <h3>Fitness Tracker App</h3>
+            <p>Cross-platform fitness app with workout plans, progress charts &amp; social challenges.</p>
+            <div class="project-tech">
+              <span>React Native</span><span>Firebase</span><span>Redux</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="proj-btn"><i class="fa fa-eye"></i> Live</a>
+              <a href="#" class="proj-btn outline"><i class="fa-brands fa-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 5 — CONTACT
+  ══════════════════════════════════════ -->
+  <section id="contact">
+    <canvas id="contactCanvas"></canvas>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">04 / Contact</span>
+        <h2 class="section-title">Let's Build Together</h2>
+        <p class="section-sub">Have a project in mind? I'd love to hear about it.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa fa-envelope"></i></div>
+            <div>
+              <p class="ci-label">Email</p>
+              <a href="mailto:ram@example.com" class="ci-value">ram@example.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa fa-phone"></i></div>
+            <div>
+              <p class="ci-label">Phone</p>
+              <a href="tel:+1234567890" class="ci-value">+1 (234) 567-890</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa fa-location-dot"></i></div>
+            <div>
+              <p class="ci-label">Location</p>
+              <p class="ci-value">Available Worldwide 🌍</p>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" class="social-btn" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" placeholder="Your Name" required />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" placeholder="Project Inquiry" />
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea rows="5" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary full-width">
+            <i class="fa fa-paper-plane"></i>&nbsp; Send Message
+          </button>
+          <p class="form-success" id="formSuccess">✅ Message sent! I'll get back to you soon.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>Designed &amp; Built with <span class="accent">♥</span> by <strong>Ram</strong> &nbsp;·&nbsp; © 2025</p>
+  </footer>
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
