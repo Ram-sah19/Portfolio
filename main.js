@@ -84,7 +84,7 @@ function initHamburger() {
 ───────────────────────────────────────── */
 function initTypewriter() {
   const el    = $("#typewriter");
-  const words = ["Full-Stack Developer", "React Developer", "Node.js Engineer", "BCA Student"];
+  const words = ["Full-Stack Developer", "ML & AI Enthusiast", "MERN Specialist", "CSE Student"];
   let wi = 0, ci = 0, deleting = false;
 
   function tick() {
@@ -332,12 +332,12 @@ function initOrbit() {
   if (!system) return;
 
   const skillData = [
-    { icon:"fa-brands fa-react",    title:"Frontend",  tags:["React.js","Next.js","Three.js","Tailwind CSS","HTML5","CSS3","JavaScript"] },
-    { icon:"fa-brands fa-node-js",  title:"Backend",   tags:["Node.js","Express.js","REST API","PHP","Python"] },
-    { icon:"fa-solid fa-database",  title:"Database",  tags:["MongoDB","MySQL","Firebase","Mongoose"] },
-    { icon:"fa-brands fa-git-alt",  title:"Tools",     tags:["Git","GitHub","VS Code","Postman","Figma","Linux"] },
-    { icon:"fa-solid fa-cube",      title:"3D / UI",   tags:["Three.js","WebGL","GSAP","Framer Motion","Bootstrap"] },
-    { icon:"fa-brands fa-python",   title:"Languages", tags:["JavaScript","Python","PHP","C","C++","Java"] },
+    { icon:"fa-brands fa-react",    title:"Frontend",  tags:["React.js","TypeScript","Next.js","Tailwind CSS","HTML5","JavaScript"] },
+    { icon:"fa-brands fa-node-js",  title:"Backend",   tags:["Node.js","Express.js","REST API","MERN Stack","Passport.js"] },
+    { icon:"fa-solid fa-database",  title:"Database",  tags:["MongoDB","PostgreSQL","Supabase","Mongoose","SQL","MongoDB Atlas"] },
+    { icon:"fa-brands fa-git-alt",  title:"Tools",     tags:["Git","GitHub","VS Code","Postman","Hoppscotch"] },
+    { icon:"fa-solid fa-brain",     title:"AI / ML",   tags:["Machine Learning","Generative AI","TensorFlow","scikit-learn","Deep Learning"] },
+    { icon:"fa-solid fa-code",      title:"Languages", tags:["Python","JavaScript","TypeScript","Java","C"] },
   ];
 
   const planets  = $$(".orbit-planet", system);
