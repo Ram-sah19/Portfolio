@@ -235,7 +235,7 @@
               <span>Python</span><span>Machine Learning</span><span>REST APIs</span>
             </div>
             <div class="project-links">
-              <a href="https://github.com/Ram-sah19" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://github.com/Ram-sah19/Blood_donation_ai" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
             </div>
           </div>
         </div>
@@ -252,7 +252,7 @@
               <span>React.js</span><span>Node.js</span><span>Supabase</span><span>AIML</span>
             </div>
             <div class="project-links">
-              <a href="https://github.com/Ram-sah19" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://github.com/bipin523396/healthcare-teleconsultation" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
             </div>
           </div>
         </div>
@@ -269,7 +269,7 @@
               <span>Node.js</span><span>JavaScript</span><span>Security</span><span>CI/CD</span><span>GitHub Actions</span>
             </div>
             <div class="project-links">
-              <a href="https://github.com/Ram-sah19" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://github.com/Ram-sah19/snap-fix" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
             </div>
           </div>
         </div>
@@ -286,7 +286,7 @@
               <span>MERN Stack</span><span>REST APIs</span><span>AI Chatbot</span>
             </div>
             <div class="project-links">
-              <a href="https://github.com/Ram-sah19" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
+              <a href="https://github.com/Ram-sah19/Holiday-Hideouts" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
             </div>
           </div>
         </div>
@@ -372,24 +372,28 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+          <p style="display:none">
+            <input name="bot-field" />
+          </p>
           <div class="form-row">
             <div class="form-group">
               <label>Name</label>
-              <input type="text" placeholder="Your Name" required />
+              <input type="text" name="name" placeholder="Your Name" required />
             </div>
             <div class="form-group">
               <label>Email</label>
-              <input type="email" placeholder="your@email.com" required />
+              <input type="email" name="email" placeholder="your@email.com" required />
             </div>
           </div>
           <div class="form-group">
             <label>Subject</label>
-            <input type="text" placeholder="Project Inquiry" />
+            <input type="text" name="subject" placeholder="Project Inquiry" />
           </div>
           <div class="form-group">
             <label>Message</label>
-            <textarea rows="5" placeholder="Tell me about your project..." required></textarea>
+            <textarea rows="5" name="message" placeholder="Tell me about your project..." required></textarea>
           </div>
           <button type="submit" class="btn btn-primary full-width">
             <i class="fa fa-paper-plane"></i>&nbsp; Send Message
