@@ -18,6 +18,9 @@ const randInt = (min, max) => Math.floor(rand(min, max));
    LOADER
 ───────────────────────────────────────── */
 window.addEventListener("load", () => {
+  if (window.location.hash) {
+    history.replaceState(null, null, window.location.pathname);
+  }
   setTimeout(() => {
     $("#loader").classList.add("hidden");
     initAll();
