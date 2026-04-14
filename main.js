@@ -431,58 +431,112 @@ function initProjectScenes() {
     const canvas = $(`#pCanvas${i}`);
     if (!canvas) return;
 
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    const w = canvas.parentElement.clientWidth  || 400;
+    const h = canvas.parentElement.clientHeight || 220;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: "high-performance" });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(cfg.bg, 1);
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    renderer.setSize(w, h);
 
     const scene  = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 50);
+    const camera = new THREE.PerspectiveCamera(55, w / h, 0.1, 50);
     camera.position.z = 3.5;
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.4));
-    const pl = new THREE.PointLight(cfg.color, 5, 15);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    const pl  = new THREE.PointLight(cfg.color, 6, 15);
     pl.position.set(2, 2, 2);
     scene.add(pl);
+    const pl2 = new THREE.PointLight(0xffffff, 1.5, 15);
+    pl2.position.set(-2, -1, 1);
+    scene.add(pl2);
+
+    const mat = new THREE.MeshStandardMaterial({
+      color: cfg.color,
+      metalness: 0.85,
+      roughness: 0.1,
+      envMapIntensity: 1,
+    });
 
     let mesh;
-    const mat = new THREE.MeshStandardMaterial({ color: cfg.color, metalness: 0.8, roughness: 0.15 });
-
-    if (cfg.shape === "torus")  mesh = new THREE.Mesh(new THREE.TorusGeometry(0.9, 0.35, 32, 80), mat);
-    if (cfg.shape === "knot")   mesh = new THREE.Mesh(new THREE.TorusKnotGeometry(0.7, 0.22, 120, 16), mat);
-    if (cfg.shape === "octa")   mesh = new THREE.Mesh(new THREE.OctahedronGeometry(1.0, 0), mat);
-    if (cfg.shape === "sphere") mesh = new THREE.Mesh(new THREE.SphereGeometry(1.0, 48, 48), mat);
-
+    if (cfg.shape === "torus")  mesh = new THREE.Mesh(new THREE.TorusGeometry(0.9, 0.34, 40, 100), mat);
+    if (cfg.shape === "knot")   mesh = new THREE.Mesh(new THREE.TorusKnotGeometry(0.7, 0.22, 150, 20), mat);
+    if (cfg.shape === "octa")   mesh = new THREE.Mesh(new THREE.OctahedronGeometry(1.0, 2), mat);
+    if (cfg.shape === "sphere") mesh = new THREE.Mesh(new THREE.SphereGeometry(1.0, 64, 64), mat);
     scene.add(mesh);
 
+    // Wireframe halo
+    const haloMat = new THREE.MeshBasicMaterial({ color: cfg.color, wireframe: true, transparent: true, opacity: 0.08 });
+    let haloGeo;
+    if (cfg.shape === "torus")  haloGeo = new THREE.TorusGeometry(0.9, 0.34, 12, 40);
+    if (cfg.shape === "knot")   haloGeo = new THREE.TorusKnotGeometry(0.7, 0.22, 60, 8);
+    if (cfg.shape === "octa")   haloGeo = new THREE.OctahedronGeometry(1.05, 2);
+    if (cfg.shape === "sphere") haloGeo = new THREE.SphereGeometry(1.05, 16, 16);
+    const halo = new THREE.Mesh(haloGeo, haloMat);
+    scene.add(halo);
+
     // Particle ring
-    const pCount = 600;
+    const pCount = 400;
     const pPos   = new Float32Array(pCount * 3);
     for (let j = 0; j < pCount; j++) {
-      const angle = rand(0, Math.PI * 2);
-      const r     = rand(1.6, 2.4);
-      pPos[j * 3]     = Math.cos(angle) * r;
-      pPos[j * 3 + 1] = rand(-0.3, 0.3);
-      pPos[j * 3 + 2] = Math.sin(angle) * r;
+      const a = rand(0, Math.PI * 2);
+      const r = rand(1.5, 2.2);
+      pPos[j * 3]     = Math.cos(a) * r;
+      pPos[j * 3 + 1] = rand(-0.25, 0.25);
+      pPos[j * 3 + 2] = Math.sin(a) * r;
     }
     const pGeo = new THREE.BufferGeometry();
     pGeo.setAttribute("position", new THREE.BufferAttribute(pPos, 3));
-    const pMat = new THREE.PointsMaterial({ size: 0.03, color: cfg.color, transparent: true, opacity: 0.6 });
-    scene.add(new THREE.Points(pGeo, pMat));
+    const pMat = new THREE.PointsMaterial({ size: 0.028, color: cfg.color, transparent: true, opacity: 0.55, sizeAttenuation: true });
+    const particles = new THREE.Points(pGeo, pMat);
+    scene.add(particles);
 
-    // Hover speed boost
-    let speed = 0.5;
-    canvas.parentElement.parentElement.addEventListener("mouseenter", () => speed = 1.8);
-    canvas.parentElement.parentElement.addEventListener("mouseleave", () => speed = 0.5);
+    // Smooth speed with lerp
+    let targetSpeed = 0.5, currentSpeed = 0.5;
+    const card = canvas.parentElement.parentElement;
+    card.addEventListener("mouseenter", () => targetSpeed = 2.2);
+    card.addEventListener("mouseleave", () => targetSpeed = 0.5);
 
-    const clock = new THREE.Clock();
-    (function animate() {
+    // Mouse tilt
+    let tiltX = 0, tiltY = 0;
+    card.addEventListener("mousemove", e => {
+      const r = card.getBoundingClientRect();
+      tiltX = ((e.clientY - r.top)  / r.height - 0.5) * -0.3;
+      tiltY = ((e.clientX - r.left) / r.width  - 0.5) *  0.3;
+    });
+    card.addEventListener("mouseleave", () => { tiltX = 0; tiltY = 0; });
+
+    // Resize
+    const ro = new ResizeObserver(() => {
+      const nw = canvas.parentElement.clientWidth;
+      const nh = canvas.parentElement.clientHeight;
+      renderer.setSize(nw, nh);
+      camera.aspect = nw / nh;
+      camera.updateProjectionMatrix();
+    });
+    ro.observe(canvas.parentElement);
+
+    // Delta-time animation — smooth regardless of speed changes
+    let last = performance.now();
+    let rx = 0, ry = 0;
+    (function animate(now) {
       requestAnimationFrame(animate);
-      const t = clock.getElapsedTime() * speed;
-      mesh.rotation.x = t * 0.4;
-      mesh.rotation.y = t * 0.6;
+      const dt = Math.min((now - last) / 1000, 0.05); // cap at 50ms
+      last = now;
+
+      currentSpeed = lerp(currentSpeed, targetSpeed, 0.06);
+
+      rx += dt * currentSpeed * 0.4;
+      ry += dt * currentSpeed * 0.6;
+
+      mesh.rotation.x  = rx + tiltX;
+      mesh.rotation.y  = ry + tiltY;
+      halo.rotation.x  = -rx * 0.5;
+      halo.rotation.y  =  ry * 0.7;
+      particles.rotation.y += dt * currentSpeed * 0.15;
+
       renderer.render(scene, camera);
-    })();
+    })(performance.now());
   });
 }
 
