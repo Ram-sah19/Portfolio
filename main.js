@@ -180,7 +180,9 @@ function initHeroScene() {
 
   // ── Animate ──
   const clock = new THREE.Clock();
-  (function animate() {
+  let animating = false;
+  function animate() {
+    if (!animating) return;
     requestAnimationFrame(animate);
     const t = clock.getElapsedTime();
 
@@ -196,7 +198,18 @@ function initHeroScene() {
     camera.lookAt(scene.position);
 
     renderer.render(scene, camera);
-  })();
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    const visible = entries[0].isIntersecting;
+    if (visible && !animating) {
+      animating = true;
+      requestAnimationFrame(animate);
+    } else if (!visible && animating) {
+      animating = false;
+    }
+  }, { threshold: 0.01 });
+  io.observe(canvas);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -243,14 +256,27 @@ function initAboutScene() {
   scene.add(ring);
 
   const clock = new THREE.Clock();
-  (function animate() {
+  let animating = false;
+  function animate() {
+    if (!animating) return;
     requestAnimationFrame(animate);
     const t = clock.getElapsedTime();
     sphere.rotation.y = t * 0.3;
     wire.rotation.y   = -t * 0.2;
     ring.rotation.z   = t * 0.5;
     renderer.render(scene, camera);
-  })();
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    const visible = entries[0].isIntersecting;
+    if (visible && !animating) {
+      animating = true;
+      requestAnimationFrame(animate);
+    } else if (!visible && animating) {
+      animating = false;
+    }
+  }, { threshold: 0.01 });
+  io.observe(canvas);
 }
 
 /* ─────────────────────────────────────────
@@ -314,7 +340,9 @@ function initSkillsScene() {
     camera.updateProjectionMatrix();
   });
 
-  (function animate() {
+  let animating = false;
+  function animate() {
+    if (!animating) return;
     requestAnimationFrame(animate);
     cubes.forEach(c => {
       c.position.y += c.userData.vy;
@@ -324,7 +352,18 @@ function initSkillsScene() {
       if (c.position.y < -7) c.position.y =  7;
     });
     renderer.render(scene, camera);
-  })();
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    const visible = entries[0].isIntersecting;
+    if (visible && !animating) {
+      animating = true;
+      requestAnimationFrame(animate);
+    } else if (!visible && animating) {
+      animating = false;
+    }
+  }, { threshold: 0.01 });
+  io.observe(canvas);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -335,7 +374,7 @@ function initOrbit() {
   if (!system) return;
 
   const skillData = [
-    { icon:"fa-brands fa-react",    title:"Frontend",  tags:["React.js","TypeScript","Next.js","Tailwind CSS","HTML5","JavaScript"] },
+    { icon:"fa-brands fa-react",    title:"Frontend",  tags:["React.js","TypeScript","Tailwind CSS","HTML5","JavaScript"] },
     { icon:"fa-brands fa-node-js",  title:"Backend",   tags:["Node.js","Express.js","REST API","MERN Stack","Passport.js"] },
     { icon:"fa-solid fa-database",  title:"Database",  tags:["MongoDB","PostgreSQL","Supabase","Mongoose","SQL","MongoDB Atlas"] },
     { icon:"fa-brands fa-git-alt",  title:"Tools",     tags:["Git","GitHub","VS Code","Postman","Hoppscotch"] },
@@ -364,13 +403,15 @@ function initOrbit() {
   ];
   const speeds = [0.45, 0.28, 0.18];
   const angles = planetCfg.map(p => p.angle * Math.PI / 180);
-  const cx = system.offsetWidth  / 2;
-  const cy = system.offsetHeight / 2;
-
   function placePlanet(el, orbitIdx, angle) {
+    const w = system.offsetWidth;
+    const h = system.offsetHeight;
+    const cx = w / 2;
+    const cy = h / 2;
+    const scale = w / 700; // 700px is the default design width
     const o = orbits[orbitIdx];
-    el.style.left = (cx + o.rx * Math.cos(angle)) + "px";
-    el.style.top  = (cy + o.ry * Math.sin(angle)) + "px";
+    el.style.left = (cx + o.rx * scale * Math.cos(angle)) + "px";
+    el.style.top  = (cy + o.ry * scale * Math.sin(angle)) + "px";
   }
 
   planets.forEach((el, i) => placePlanet(el, planetCfg[i].orbit, angles[i]));
@@ -408,7 +449,9 @@ function initOrbit() {
 
   // Animation loop
   let last = performance.now();
-  (function loop(now) {
+  let animating = false;
+  function loop(now) {
+    if (!animating) return;
     requestAnimationFrame(loop);
     const dt = (now - last) / 1000;
     last = now;
@@ -416,7 +459,19 @@ function initOrbit() {
       angles[i] += speeds[planetCfg[i].orbit] * dt;
       placePlanet(el, planetCfg[i].orbit, angles[i]);
     });
-  })(performance.now());
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    const visible = entries[0].isIntersecting;
+    if (visible && !animating) {
+      animating = true;
+      last = performance.now();
+      requestAnimationFrame(loop);
+    } else if (!visible && animating) {
+      animating = false;
+    }
+  }, { threshold: 0.01 });
+  io.observe(system);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -424,14 +479,16 @@ function initOrbit() {
 ═══════════════════════════════════════════════════════ */
 function initProjectScenes() {
   const configs = [
-    { color: 0xc9a84c, shape: "torus",  bg: 0x0f0c04 },
-    { color: 0xe8d5a3, shape: "knot",   bg: 0x0d0d0d },
-    { color: 0x8b6914, shape: "octa",   bg: 0x0a0800 },
-    { color: 0xd4af6a, shape: "sphere", bg: 0x0c0b08 },
+    // Hackathon cards
+    { id: "hCanvas0", color: 0x7c3aed, shape: "knot",   bg: 0x08050f }, // GRIDocK — purple ML
+    { id: "hCanvas1", color: 0xc9a84c, shape: "torus",  bg: 0x0f0c04 }, // Blood Donation AI
+    { id: "hCanvas2", color: 0xe8d5a3, shape: "sphere", bg: 0x0d0d0d }, // Telemedicine
+    { id: "pCanvas0", color: 0xc9a84c, shape: "knot",  bg: 0x0f0c04 }, // Nebula — gold theme
+    { id: "pCanvas1", color: 0xd4af6a, shape: "torus", bg: 0x0c0b08 }, // Holiday Hideout
   ];
 
-  configs.forEach((cfg, i) => {
-    const canvas = $(`#pCanvas${i}`);
+  configs.forEach((cfg) => {
+    const canvas = $(`#${cfg.id}`);
     if (!canvas) return;
 
     const w = canvas.parentElement.clientWidth  || 400;
@@ -494,13 +551,11 @@ function initProjectScenes() {
     const particles = new THREE.Points(pGeo, pMat);
     scene.add(particles);
 
-    // Smooth speed with lerp
     let targetSpeed = 0.5, currentSpeed = 0.5;
     const card = canvas.parentElement.parentElement;
     card.addEventListener("mouseenter", () => targetSpeed = 2.2);
     card.addEventListener("mouseleave", () => targetSpeed = 0.5);
 
-    // Mouse tilt
     let tiltX = 0, tiltY = 0;
     card.addEventListener("mousemove", e => {
       const r = card.getBoundingClientRect();
@@ -509,7 +564,6 @@ function initProjectScenes() {
     });
     card.addEventListener("mouseleave", () => { tiltX = 0; tiltY = 0; });
 
-    // Resize
     const ro = new ResizeObserver(() => {
       const nw = canvas.parentElement.clientWidth;
       const nh = canvas.parentElement.clientHeight;
@@ -519,16 +573,16 @@ function initProjectScenes() {
     });
     ro.observe(canvas.parentElement);
 
-    // Delta-time animation — smooth regardless of speed changes
     let last = performance.now();
     let rx = 0, ry = 0;
-    (function animate(now) {
+    let animating = false;
+    function animate(now) {
+      if (!animating) return;
       requestAnimationFrame(animate);
-      const dt = Math.min((now - last) / 1000, 0.05); // cap at 50ms
+      const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
 
       currentSpeed = lerp(currentSpeed, targetSpeed, 0.06);
-
       rx += dt * currentSpeed * 0.4;
       ry += dt * currentSpeed * 0.6;
 
@@ -539,7 +593,19 @@ function initProjectScenes() {
       particles.rotation.y += dt * currentSpeed * 0.15;
 
       renderer.render(scene, camera);
-    })(performance.now());
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      const visible = entries[0].isIntersecting;
+      if (visible && !animating) {
+        animating = true;
+        last = performance.now();
+        requestAnimationFrame(animate);
+      } else if (!visible && animating) {
+        animating = false;
+      }
+    }, { threshold: 0.01 });
+    io.observe(canvas);
   });
 }
 
@@ -581,7 +647,9 @@ function initContactScene() {
   });
 
   const clock = new THREE.Clock();
-  (function animate() {
+  let animating = false;
+  function animate() {
+    if (!animating) return;
     requestAnimationFrame(animate);
     const t = clock.getElapsedTime();
     for (let i = 0; i < posAttr.count; i++) {
@@ -591,7 +659,18 @@ function initContactScene() {
     }
     posAttr.needsUpdate = true;
     renderer.render(scene, camera);
-  })();
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    const visible = entries[0].isIntersecting;
+    if (visible && !animating) {
+      animating = true;
+      requestAnimationFrame(animate);
+    } else if (!visible && animating) {
+      animating = false;
+    }
+  }, { threshold: 0.01 });
+  io.observe(canvas);
 }
 
 /* ─────────────────────────────────────────

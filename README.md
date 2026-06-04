@@ -64,7 +64,11 @@ ram/
 
 ## 🎨 Featured Projects
 
-### 🩸 Blood Donation AI
+### 🏆 GRIDocK — Traffic Demand Prediction
+Flipkart Grid 6.0 hackathon project featuring a triple ensemble machine learning pipeline (LightGBM + XGBoost + CatBoost) with 5-fold cross-validation and geohash engineering.
+`Python` `LightGBM` `XGBoost` `CatBoost` `scikit-learn` `Pandas`
+
+### 🩸 Sanguis-AI (Blood Donation System)
 AI-powered emergency coordinator matching donors to recipients using blood type compatibility and real-time proximity. Recognized at **Samitha Hackathon**.
 `Python` `Machine Learning` `REST APIs`
 
@@ -72,13 +76,14 @@ AI-powered emergency coordinator matching donors to recipients using blood type 
 End-to-end healthcare system with patient EMR, appointment scheduling, and AI-assisted prescriptions. **Nasscom Finalist**.
 `React.js` `Node.js` `Supabase` `AIML`
 
-### 🔒 Snap-Fix
-Open-source Node.js CLI tool detecting 5 critical production security issues with intelligent auto-fixing, interactive & bulk-fix modes, and advanced async/await scope analysis.
-`Node.js` `JavaScript` `Security` `CI/CD` `GitHub Actions`
+### 🌌 Nebula — E-Commerce Platform
+Ultra-premium full-stack e-commerce platform for laptops & electronics built with the Obsidian Flux design system. Features JWT auth, PostgreSQL database, React frontend, and Zustand state.
+`Java 17` `Spring Boot` `React` `PostgreSQL` `Tailwind CSS` `Zustand`
 
 ### 🏠 Holiday Hideout
 Airbnb-style booking platform with role-based auth, property listings, and AI-integrated chatbot for support.
 `MERN Stack` `REST APIs` `AI Chatbot`
+
 
 ---
 
