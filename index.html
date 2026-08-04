@@ -51,8 +51,8 @@
       <li><a href="#hero"       class="nav-link">Home</a></li>
       <li><a href="#about"      class="nav-link">About</a></li>
       <li><a href="#skills"     class="nav-link">Skills</a></li>
-      <li><a href="#projects"   class="nav-link">Projects</a></li>
       <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#projects"   class="nav-link">Projects</a></li>
       <li><a href="#contact"    class="nav-link">Contact</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="menu">
@@ -66,8 +66,8 @@
       <li><a href="#hero"        class="mob-link">Home</a></li>
       <li><a href="#about"       class="mob-link">About</a></li>
       <li><a href="#skills"      class="mob-link">Skills</a></li>
-      <li><a href="#projects"    class="mob-link">Projects</a></li>
       <li><a href="#experience"  class="mob-link">Experience</a></li>
+      <li><a href="#projects"    class="mob-link">Projects</a></li>
       <li><a href="#contact"     class="mob-link">Contact</a></li>
     </ul>
   </div>
@@ -236,202 +236,12 @@
   </section>
 
   <!-- ══════════════════════════════════════
-       SECTION 3 — PROJECTS
-  ══════════════════════════════════════ -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">03 / Projects</span>
-        <h2 class="section-title">Featured Work</h2>
-        <p class="section-sub">Hackathon battles &amp; personal builds</p>
-      </div>
-
-      <!-- ── Hackathon ── -->
-      <div class="proj-subsection">
-        <div class="proj-sub-header">
-          <div class="proj-sub-label">
-            <i class="fa-solid fa-trophy"></i>
-            <span>Hackathon Projects</span>
-          </div>
-          <div class="proj-sub-line"></div>
-        </div>
-
-        <div class="projects-grid projects-grid--hack">
-
-          <!-- Flipkart GRIDocK — featured wide card -->
-          <div class="project-card project-card--featured" data-index="0">
-            <div class="project-canvas-wrap">
-              <canvas class="project-canvas" id="hCanvas0"></canvas>
-            </div>
-            <div class="project-info">
-              <div class="project-header-row">
-                <span class="project-tag">ML · Ensemble · Hackathon</span>
-                <span class="project-award"><i class="fa-solid fa-trophy"></i> Flipkart Grid 6.0</span>
-              </div>
-              <h3>GRIDocK — Traffic Demand Prediction</h3>
-              <p>A machine learning pipeline predicting traffic demand across geohash-encoded locations at specific timestamps. Built a <strong>triple ensemble</strong> of LightGBM (40%), XGBoost (40%), and CatBoost (20%) with 5-fold cross-validation. Evaluated via R² score scaled to 0–100. Target: Score ≥ 99 on the leaderboard.</p>
-              <div class="project-highlights-row">
-                <div class="project-highlight-item">
-                  <i class="fa-solid fa-layer-group"></i>
-                  <span>Triple Ensemble Model</span>
-                </div>
-                <div class="project-highlight-item">
-                  <i class="fa-solid fa-rotate"></i>
-                  <span>5-Fold Cross-Validation</span>
-                </div>
-                <div class="project-highlight-item">
-                  <i class="fa-solid fa-location-dot"></i>
-                  <span>Geohash Feature Engineering</span>
-                </div>
-                <div class="project-highlight-item">
-                  <i class="fa-solid fa-chart-line"></i>
-                  <span>R² Score Metric</span>
-                </div>
-              </div>
-              <div class="project-tech">
-                <span>Python</span><span>LightGBM</span><span>XGBoost</span><span>CatBoost</span><span>scikit-learn</span><span>pandas</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/Ram-sah19/Griklock" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Blood Donation AI -->
-          <div class="project-card" data-index="1">
-            <div class="project-canvas-wrap">
-              <canvas class="project-canvas" id="hCanvas1"></canvas>
-            </div>
-            <div class="project-info">
-              <div class="project-header-row">
-                <span class="project-tag">AI &amp; ML</span>
-                <span class="project-award"><i class="fa-solid fa-medal"></i> Samitha Hackathon</span>
-              </div>
-              <h3>Sanguis-AI (Blood Donation System)</h3>
-              <p>An AI-powered emergency coordinator matching donors to recipients using blood type compatibility and real-time proximity.</p>
-              <div class="project-tech">
-                <span>Python</span><span>Machine Learning</span><span>REST APIs</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/Ram-sah19/Blood_donation_ai" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Telemedicine -->
-          <div class="project-card" data-index="2">
-            <div class="project-canvas-wrap">
-              <canvas class="project-canvas" id="hCanvas2"></canvas>
-            </div>
-            <div class="project-info">
-              <div class="project-header-row">
-                <span class="project-tag">Healthcare</span>
-                <span class="project-award"><i class="fa-solid fa-medal"></i> Nasscom Finalist</span>
-              </div>
-              <h3>Telemedicine Platform</h3>
-              <p>End-to-end healthcare system with patient EMR, appointment scheduling, and AI-assisted prescriptions.</p>
-              <div class="project-tech">
-                <span>React.js</span><span>Node.js</span><span>Supabase</span><span>AIML</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/bipin523396/healthcare-teleconsultation" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- ── Personal Projects ── -->
-      <div class="proj-subsection">
-        <div class="proj-sub-header">
-          <div class="proj-sub-label">
-            <i class="fa-solid fa-code"></i>
-            <span>Personal Projects</span>
-          </div>
-          <div class="proj-sub-line"></div>
-        </div>
-
-        <div class="projects-grid">
-
-          <div class="project-card" data-index="3">
-            <div class="project-canvas-wrap">
-              <canvas class="project-canvas" id="pCanvas0"></canvas>
-            </div>
-            <div class="project-info">
-              <div class="project-header-row">
-                <span class="project-tag">Full-Stack · E-Commerce</span>
-                <span class="project-award"><i class="fa-solid fa-store"></i> Obsidian Flux</span>
-              </div>
-              <h3>Nebula — E-Commerce Platform</h3>
-              <p>Ultra-premium full-stack e-commerce platform for laptops &amp; electronics. Built with a dark indigo/cyan design system featuring glassmorphism cards, JWT auth (access + refresh tokens), admin dashboard, and full cart → checkout flow.</p>
-              <div class="project-highlights-row project-highlights-row--sm">
-                <div class="project-highlight-item">
-                  <i class="fa-brands fa-java"></i>
-                  <span>Spring Boot 3.2</span>
-                </div>
-                <div class="project-highlight-item">
-                  <i class="fa-solid fa-key"></i>
-                  <span>JWT Auth</span>
-                </div>
-                <div class="project-highlight-item">
-                  <i class="fa-solid fa-database"></i>
-                  <span>PostgreSQL 15</span>
-                </div>
-                <div class="project-highlight-item">
-                  <i class="fa-brands fa-react"></i>
-                  <span>React 18 + Vite</span>
-                </div>
-              </div>
-              <div class="project-tech">
-                <span>Java 17</span><span>Spring Boot</span><span>React 18</span><span>PostgreSQL</span><span>Tailwind CSS</span><span>Zustand</span><span>Framer Motion</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/Ram-sah19/Nabula" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card" data-index="4">
-            <div class="project-canvas-wrap">
-              <canvas class="project-canvas" id="pCanvas1"></canvas>
-            </div>
-            <div class="project-info">
-              <span class="project-tag">Full-Stack</span>
-              <h3>Holiday Hideout</h3>
-              <p>Airbnb-style booking platform with role-based auth, property listings, and AI-integrated chatbot for support.</p>
-              <div class="project-tech">
-                <span>MERN Stack</span><span>REST APIs</span><span>AI Chatbot</span>
-              </div>
-              <div class="project-links">
-                <a href="https://github.com/Ram-sah19/Holiday-Hideouts" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- See All button -->
-        <div class="proj-see-all">
-          <a href="https://github.com/Ram-sah19?tab=repositories" target="_blank" class="proj-see-all-btn">
-            <i class="fa-brands fa-github"></i>
-            View All Projects on GitHub
-            <i class="fa-solid fa-arrow-right proj-arrow"></i>
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       SECTION — EXPERIENCE
+       SECTION 3 — EXPERIENCE
   ══════════════════════════════════════ -->
   <section id="experience">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-tag">04 / Experience</span>
+        <span class="section-tag">03 / Experience</span>
         <h2 class="section-title">Where I've Worked</h2>
         <p class="section-sub">Hands-on internships building real-world products</p>
       </div>
@@ -636,6 +446,196 @@
         </div>
 
       </div><!-- /exp-timeline -->
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 4 — PROJECTS
+  ══════════════════════════════════════ -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">04 / Projects</span>
+        <h2 class="section-title">Featured Work</h2>
+        <p class="section-sub">Hackathon battles &amp; personal builds</p>
+      </div>
+
+      <!-- ── Hackathon ── -->
+      <div class="proj-subsection">
+        <div class="proj-sub-header">
+          <div class="proj-sub-label">
+            <i class="fa-solid fa-trophy"></i>
+            <span>Hackathon Projects</span>
+          </div>
+          <div class="proj-sub-line"></div>
+        </div>
+
+        <div class="projects-grid projects-grid--hack">
+
+          <!-- Flipkart GRIDocK — featured wide card -->
+          <div class="project-card project-card--featured" data-index="0">
+            <div class="project-canvas-wrap">
+              <canvas class="project-canvas" id="hCanvas0"></canvas>
+            </div>
+            <div class="project-info">
+              <div class="project-header-row">
+                <span class="project-tag">ML · Ensemble · Hackathon</span>
+                <span class="project-award"><i class="fa-solid fa-trophy"></i> Flipkart Grid 6.0</span>
+              </div>
+              <h3>GRIDocK — Traffic Demand Prediction</h3>
+              <p>A machine learning pipeline predicting traffic demand across geohash-encoded locations at specific timestamps. Built a <strong>triple ensemble</strong> of LightGBM (40%), XGBoost (40%), and CatBoost (20%) with 5-fold cross-validation. Evaluated via R² score scaled to 0–100. Target: Score ≥ 99 on the leaderboard.</p>
+              <div class="project-highlights-row">
+                <div class="project-highlight-item">
+                  <i class="fa-solid fa-layer-group"></i>
+                  <span>Triple Ensemble Model</span>
+                </div>
+                <div class="project-highlight-item">
+                  <i class="fa-solid fa-rotate"></i>
+                  <span>5-Fold Cross-Validation</span>
+                </div>
+                <div class="project-highlight-item">
+                  <i class="fa-solid fa-location-dot"></i>
+                  <span>Geohash Feature Engineering</span>
+                </div>
+                <div class="project-highlight-item">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>R² Score Metric</span>
+                </div>
+              </div>
+              <div class="project-tech">
+                <span>Python</span><span>LightGBM</span><span>XGBoost</span><span>CatBoost</span><span>scikit-learn</span><span>pandas</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Ram-sah19/Griklock" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blood Donation AI -->
+          <div class="project-card" data-index="1">
+            <div class="project-canvas-wrap">
+              <canvas class="project-canvas" id="hCanvas1"></canvas>
+            </div>
+            <div class="project-info">
+              <div class="project-header-row">
+                <span class="project-tag">AI &amp; ML</span>
+                <span class="project-award"><i class="fa-solid fa-medal"></i> Samitha Hackathon</span>
+              </div>
+              <h3>Sanguis-AI (Blood Donation System)</h3>
+              <p>An AI-powered emergency coordinator matching donors to recipients using blood type compatibility and real-time proximity.</p>
+              <div class="project-tech">
+                <span>Python</span><span>Machine Learning</span><span>REST APIs</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Ram-sah19/Blood_donation_ai" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Telemedicine -->
+          <div class="project-card" data-index="2">
+            <div class="project-canvas-wrap">
+              <canvas class="project-canvas" id="hCanvas2"></canvas>
+            </div>
+            <div class="project-info">
+              <div class="project-header-row">
+                <span class="project-tag">Healthcare</span>
+                <span class="project-award"><i class="fa-solid fa-medal"></i> Nasscom Finalist</span>
+              </div>
+              <h3>Telemedicine Platform</h3>
+              <p>End-to-end healthcare system with patient EMR, appointment scheduling, and AI-assisted prescriptions.</p>
+              <div class="project-tech">
+                <span>React.js</span><span>Node.js</span><span>Supabase</span><span>AIML</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/bipin523396/healthcare-teleconsultation" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Personal Projects ── -->
+      <div class="proj-subsection">
+        <div class="proj-sub-header">
+          <div class="proj-sub-label">
+            <i class="fa-solid fa-code"></i>
+            <span>Personal Projects</span>
+          </div>
+          <div class="proj-sub-line"></div>
+        </div>
+
+        <div class="projects-grid">
+
+          <div class="project-card" data-index="3">
+            <div class="project-canvas-wrap">
+              <canvas class="project-canvas" id="pCanvas0"></canvas>
+            </div>
+            <div class="project-info">
+              <div class="project-header-row">
+                <span class="project-tag">Full-Stack · E-Commerce</span>
+                <span class="project-award"><i class="fa-solid fa-store"></i> Obsidian Flux</span>
+              </div>
+              <h3>Nebula — E-Commerce Platform</h3>
+              <p>Ultra-premium full-stack e-commerce platform for laptops &amp; electronics. Built with a dark indigo/cyan design system featuring glassmorphism cards, JWT auth (access + refresh tokens), admin dashboard, and full cart → checkout flow.</p>
+              <div class="project-highlights-row project-highlights-row--sm">
+                <div class="project-highlight-item">
+                  <i class="fa-brands fa-java"></i>
+                  <span>Spring Boot 3.2</span>
+                </div>
+                <div class="project-highlight-item">
+                  <i class="fa-solid fa-key"></i>
+                  <span>JWT Auth</span>
+                </div>
+                <div class="project-highlight-item">
+                  <i class="fa-solid fa-database"></i>
+                  <span>PostgreSQL 15</span>
+                </div>
+                <div class="project-highlight-item">
+                  <i class="fa-brands fa-react"></i>
+                  <span>React 18 + Vite</span>
+                </div>
+              </div>
+              <div class="project-tech">
+                <span>Java 17</span><span>Spring Boot</span><span>React 18</span><span>PostgreSQL</span><span>Tailwind CSS</span><span>Zustand</span><span>Framer Motion</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Ram-sah19/Nabula" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card" data-index="4">
+            <div class="project-canvas-wrap">
+              <canvas class="project-canvas" id="pCanvas1"></canvas>
+            </div>
+            <div class="project-info">
+              <span class="project-tag">Full-Stack</span>
+              <h3>Holiday Hideout</h3>
+              <p>Airbnb-style booking platform with role-based auth, property listings, and AI-integrated chatbot for support.</p>
+              <div class="project-tech">
+                <span>MERN Stack</span><span>REST APIs</span><span>AI Chatbot</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/Ram-sah19/Holiday-Hideouts" target="_blank" class="proj-btn"><i class="fa-brands fa-github"></i> Code</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- See All button -->
+        <div class="proj-see-all">
+          <a href="https://github.com/Ram-sah19?tab=repositories" target="_blank" class="proj-see-all-btn">
+            <i class="fa-brands fa-github"></i>
+            View All Projects on GitHub
+            <i class="fa-solid fa-arrow-right proj-arrow"></i>
+          </a>
+        </div>
+
+      </div>
+
     </div>
   </section>
 
