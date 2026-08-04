@@ -239,6 +239,19 @@ body {
   transform:translateY(-3px);
 }
 .full-width { width:100%; justify-content:center; }
+.btn-sm { padding:8px 20px; font-size:.85rem; }
+.exp-location-tag {
+  font-size: .75rem;
+  font-family: var(--mono);
+  color: var(--text-muted);
+  margin-left: 8px;
+  background: rgba(255,255,255,.05);
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
 
 /* ══════════════════════════════════════
    HERO
@@ -1150,6 +1163,20 @@ body {
   background: rgba(201,168,76,.08);
   border: 1px dashed rgba(201,168,76,.3);
   color: var(--text-muted);
+}
+.exp-badge--doc {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(200, 180, 120, 0.25);
+  color: var(--accent2);
+}
+.exp-dot--doc {
+  background: var(--bg3);
+  border: 2px solid rgba(200, 180, 120, 0.4);
+  box-shadow: 0 0 8px rgba(201, 168, 76, 0.15);
+}
+.exp-card--doc {
+  border-color: rgba(200, 180, 120, 0.15);
+  opacity: 0.92;
 }
 
 /* Description */
