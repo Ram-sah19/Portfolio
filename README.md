@@ -64,8 +64,8 @@ ram/
 
 ## 🎨 Featured Projects
 
-### 🏆 GRIDocK — Traffic Demand Prediction
-Flipkart Grid 6.0 hackathon project featuring a triple ensemble machine learning pipeline (LightGBM + XGBoost + CatBoost) with 5-fold cross-validation and geohash engineering.
+### 🏆 GRIDocK — Traffic Demand Prediction (Flipkart Grid 6.0 Semi-Finalist)
+Flipkart Grid 6.0 hackathon project breaking through to the **Semi-Final Round out of 30,000+ registrations**. Features a triple ensemble machine learning pipeline (LightGBM + XGBoost + CatBoost) with 5-fold cross-validation and geohash engineering.
 `Python` `LightGBM` `XGBoost` `CatBoost` `scikit-learn` `Pandas`
 
 ### 🩸 Sanguis-AI (Blood Donation System)
